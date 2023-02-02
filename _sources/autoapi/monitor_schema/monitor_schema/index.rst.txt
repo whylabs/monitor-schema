@@ -1,0 +1,11 @@
+:py:mod:`monitor_schema.monitor_schema`
+=======================================
+
+.. py:module:: monitor_schema.monitor_schema
+
+.. autoapi-nested-parse::
+
+   Main module.
+
+
+

@@ -1,0 +1,89 @@
+
+==============
+Drift: Configs
+==============
+------------------
+Histogram Analyzer
+------------------
+Analyzing drift of numerical features.
+Note that we use group:continuous to select all continuous features.
+
+
+.. code-block:: yaml
+
+   config:
+     algorithm: hellinger
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: histogram
+     minBatchSize: 1
+     threshold: 0.7
+     type: drift
+   id: numerical_drift-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     include:
+     - group:continuous
+     segments:
+     - tags: []
+     type: column
+   
+
+-----------------------
+Frequent Items Analyzer
+-----------------------
+Analyzing frequent items to detect drifts with categorical values
+
+
+.. code-block:: yaml
+
+   config:
+     algorithm: hellinger
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: frequent_items
+     minBatchSize: 1
+     threshold: 0.7
+     type: drift
+   id: frequent_items_drift-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     include:
+     - group:discrete
+     segments:
+     - tags: []
+     type: column
+   
+
+-------------------------------
+Histogram with custom threshold
+-------------------------------
+Customize the threshold that will trigger the anomaly for a histogram.
+
+
+.. code-block:: yaml
+
+   config:
+     algorithm: hellinger
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: histogram
+     minBatchSize: 1
+     threshold: 0.5
+     type: drift
+   id: drift-histogram-segments-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     include:
+     - group:continuous
+     type: column
+   

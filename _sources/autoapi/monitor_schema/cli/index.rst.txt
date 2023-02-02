@@ -1,0 +1,33 @@
+:py:mod:`monitor_schema.cli`
+============================
+
+.. py:module:: monitor_schema.cli
+
+.. autoapi-nested-parse::
+
+   Console script for monitor_schema.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.cli.main
+   monitor_schema.cli._dump_json_yaml
+
+
+
+.. py:function:: main() -> None
+
+   Generates schema and example document JSON.
+
+
+.. py:function:: _dump_json_yaml(file_name: str, json_content: str) -> None
+
+

@@ -1,0 +1,56 @@
+:py:mod:`monitor_schema.models.segments`
+========================================
+
+.. py:module:: monitor_schema.models.segments
+
+.. autoapi-nested-parse::
+
+   Segment definitions.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.segments.SegmentTag
+   monitor_schema.models.segments.Segment
+
+
+
+
+.. py:class:: SegmentTag(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   A single tag key value pair for a segment.
+
+   .. py:attribute:: key
+      :annotation: :str
+
+      
+
+   .. py:attribute:: value
+      :annotation: :str
+
+      
+
+
+.. py:class:: Segment(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   A segment is a list of tags.
+
+   We normalize these in the backend.
+
+   .. py:attribute:: tags
+      :annotation: :List[SegmentTag]
+
+      
+
+

@@ -1,0 +1,198 @@
+:py:mod:`monitor_schema.models.commons`
+=======================================
+
+.. py:module:: monitor_schema.models.commons
+
+.. autoapi-nested-parse::
+
+   Common schema definitions.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.commons.NoExtrasBaseModel
+   monitor_schema.models.commons.ImmediateSchedule
+   monitor_schema.models.commons.TimeRange
+   monitor_schema.models.commons.CronSchedule
+   monitor_schema.models.commons.Cadence
+   monitor_schema.models.commons.FixedCadenceSchedule
+   monitor_schema.models.commons.Metadata
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.commons.CRON_REGEX
+   monitor_schema.models.commons.DATASET_ID_REGEX
+   monitor_schema.models.commons.DATASET_ID_DEF
+
+
+.. py:data:: CRON_REGEX
+   :annotation: = (@(annually|yearly|monthly|weekly|daily|hourly))|((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})
+
+   
+
+.. py:data:: DATASET_ID_REGEX
+   :annotation: = [a-zA-Z0-9\-_\.]+
+
+   
+
+.. py:data:: DATASET_ID_DEF
+   
+
+   
+
+.. py:class:: NoExtrasBaseModel(**data: Any)
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+   No extras base model.
+
+   Inherit to prevent accidental extra fields.
+
+
+.. py:class:: ImmediateSchedule(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Schedule the monitor to run immediately.
+
+   .. py:attribute:: type
+      :annotation: :Literal[immediate]
+
+      
+
+
+.. py:class:: TimeRange(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Support for a specific time range.
+
+   .. py:attribute:: start
+      :annotation: :datetime.datetime
+
+      
+
+   .. py:attribute:: end
+      :annotation: :datetime.datetime
+
+      
+
+
+.. py:class:: CronSchedule(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Support for scheduling.
+
+   .. py:attribute:: type
+      :annotation: :Literal[CronSchedule.cron]
+
+      
+
+   .. py:attribute:: cron
+      :annotation: :str
+
+      
+
+   .. py:attribute:: exclusionRanges
+      :annotation: :Optional[List[TimeRange]]
+
+      
+
+
+.. py:class:: Cadence
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Cadence for an analyzer or monitor run.
+
+   .. py:attribute:: hourly
+      :annotation: = hourly
+
+      
+
+   .. py:attribute:: daily
+      :annotation: = daily
+
+      
+
+   .. py:attribute:: weekly
+      :annotation: = weekly
+
+      
+
+   .. py:attribute:: monthly
+      :annotation: = monthly
+
+      
+
+
+.. py:class:: FixedCadenceSchedule(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Support for scheduling based on a predefined cadence.
+
+   .. py:attribute:: type
+      :annotation: :Literal[fixed]
+
+      
+
+   .. py:attribute:: cadence
+      :annotation: :Literal[Cadence, Cadence, Cadence, Cadence]
+
+      
+
+   .. py:attribute:: exclusionRanges
+      :annotation: :Optional[List[TimeRange]]
+
+      
+
+
+.. py:class:: Metadata(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Metadata for a top-level objects such as monitors, analyzers, and schema.
+
+   This object is managed by WhyLabs. Any user-provided values will be ignored on WhyLabs side.
+
+   .. py:attribute:: version
+      :annotation: :int
+
+      
+
+   .. py:attribute:: schemaVersion
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: updatedTimestamp
+      :annotation: :int
+
+      
+
+   .. py:attribute:: author
+      :annotation: :str
+
+      
+
+   .. py:attribute:: description
+      :annotation: :Optional[str]
+
+      
+
+

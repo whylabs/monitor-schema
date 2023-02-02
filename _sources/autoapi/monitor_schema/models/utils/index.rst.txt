@@ -1,0 +1,59 @@
+:py:mod:`monitor_schema.models.utils`
+=====================================
+
+.. py:module:: monitor_schema.models.utils
+
+.. autoapi-nested-parse::
+
+   Common utilities.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.utils.anyOf_to_oneOf
+   monitor_schema.models.utils.duration_field
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.utils.COLUMN_NAME_TYPE
+   monitor_schema.models.utils.METRIC_NAME_STR
+
+
+.. py:function:: anyOf_to_oneOf(schema: Dict[str, Any], field_name: str) -> None
+
+   Turn anyOf in JSON schema to oneOf.
+
+   onfOf is much stricter and pyDantic doesn't produce this tag. We hijack the JSON schema object to
+   set this correctly.
+
+   See: https://github.com/samuelcolvin/pydantic/issues/656
+
+
+.. py:data:: COLUMN_NAME_TYPE
+   
+
+   
+
+.. py:data:: METRIC_NAME_STR
+   
+
+   
+
+.. py:function:: duration_field(description: str, title: Optional[str] = None) -> pydantic.Field
+
+   Duration of a field.
+
+

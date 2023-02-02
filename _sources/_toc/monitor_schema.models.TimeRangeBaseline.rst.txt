@@ -1,0 +1,6 @@
+﻿monitor\_schema.models.TimeRangeBaseline
+========================================
+
+.. currentmodule:: monitor_schema.models
+
+.. autopydantic_model:: TimeRangeBaseline

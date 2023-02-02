@@ -1,0 +1,28 @@
+Overall
+========================================
+
+
+* :ref:`genindex`
+* :ref:`search`
+* :ref:`modindex`
+
+.. toctree::
+    :maxdepth: 4
+    :caption: Examples:
+
+    examples
+
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Contents:
+
+    self
+    main
+
+
+.. toctree::
+    :maxdepth: 1
+    :caption: APIs:
+
+    autoapi/index

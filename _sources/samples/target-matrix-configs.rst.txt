@@ -1,0 +1,122 @@
+
+=============================
+Target Matrix: Configurations
+=============================
+--------------
+Include fields
+--------------
+Configuring analyzers for a specific fields.
+Users can opt in to configure the values for specific fields of interest.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     factor: 3.0
+     metric: mean
+     minBatchSize: 1
+     type: stddev
+   id: stddev-include-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     include:
+     - annual_inc
+     - income
+     - credit_amount
+     type: column
+   
+
+-------------------------
+Excluding specific fields
+-------------------------
+Users can ignore the analysis on fields that are too noisy or irrelevant.
+
+
+.. code-block:: yaml
+
+   config:
+     algorithm: hellinger
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: histogram
+     minBatchSize: 1
+     threshold: 0.5
+     type: drift
+   id: drift-histogram-exclude-fields-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     exclude:
+     - noisy_feature
+     - bias_feature
+     include:
+     - group:continuous
+     segments:
+     - tags: []
+     type: column
+   
+
+----------------
+Include Segments
+----------------
+Configuring analyzers for a specific segments.
+Users can configure specific tags as part of the target metric dimension.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     factor: 3.0
+     metric: mean
+     minBatchSize: 1
+     type: stddev
+   id: stddev-include-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     include:
+     - group:float
+     segments:
+     - tags: []
+     - tags:
+       - key: city
+         value: sea
+       - key: job
+         value: teacher
+     - tags:
+       - key: city
+         value: nyc
+       - key: job
+         value: teacher
+     - tags:
+       - key: city
+         value: nyc
+       - key: job
+         value: fire fighter
+     - tags:
+       - key: city
+         value: sfc
+       - key: job
+         value: fire fighter
+     - tags:
+       - key: city
+         value: sfc
+     - tags:
+       - key: city
+         value: seattle
+     - tags:
+       - key: city
+         value: sea
+     type: column
+   

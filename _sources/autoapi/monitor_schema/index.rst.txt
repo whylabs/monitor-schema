@@ -1,0 +1,136 @@
+:py:mod:`monitor_schema`
+========================
+
+.. py:module:: monitor_schema
+
+.. autoapi-nested-parse::
+
+   Top-level package for monitor-schema.
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   models/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   cli/index.rst
+   monitor_schema/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.Document
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.__author__
+   monitor_schema.__email__
+   monitor_schema.__version__
+   monitor_schema.__ALL__
+
+
+.. py:class:: Document(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   The main document that dictates how the monitor should be run. This document is managed by WhyLabs internally.
+
+   .. py:attribute:: id
+      :annotation: :Optional[uuid.UUID]
+
+      
+
+   .. py:attribute:: schemaVersion
+      :annotation: :Literal[1]
+
+      
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: orgId
+      :annotation: :str
+
+      
+
+   .. py:attribute:: datasetId
+      :annotation: :str
+
+      
+
+   .. py:attribute:: granularity
+      :annotation: :Granularity
+
+      
+
+   .. py:attribute:: allowPartialTargetBatches
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: entitySchema
+      :annotation: :Optional[monitor_schema.models.column_schema.EntitySchema]
+
+      
+
+   .. py:attribute:: weightConfig
+      :annotation: :Optional[monitor_schema.models.column_schema.EntityWeights]
+
+      
+
+   .. py:attribute:: analyzers
+      :annotation: :List[monitor_schema.models.analyzer.Analyzer]
+
+      
+
+   .. py:attribute:: monitors
+      :annotation: :List[monitor_schema.models.monitor.Monitor]
+
+      
+
+
+.. py:data:: __author__
+   :annotation: = WhyLabs
+
+   
+
+.. py:data:: __email__
+   :annotation: = monitor@whylabs.ai
+
+   
+
+.. py:data:: __version__
+   :annotation: = 0.1.0
+
+   
+
+.. py:data:: __ALL__
+   
+
+   
+

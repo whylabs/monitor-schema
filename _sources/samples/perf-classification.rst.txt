@@ -1,0 +1,103 @@
+
+====================
+Perf: Classification
+====================
+-------------------------
+Classification Metric: f1
+-------------------------
+Analyzing f1 score.
+Detects when f1 score changes by 10%.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: classification.f1
+     mode: pct
+     threshold: 10.0
+     type: diff
+   id: class-f1-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     type: dataset
+   
+
+--------------------------------
+Classification Metric: precision
+--------------------------------
+Analyzing precision value.
+Detects when precision changes by 10%.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: classification.precision
+     mode: pct
+     threshold: 10.0
+     type: diff
+   id: class-precision-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     type: dataset
+   
+
+-----------------------------
+Classification Metric: recall
+-----------------------------
+Analyzing recall.
+Detects when recall changes by 10%.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: classification.recall
+     mode: pct
+     threshold: 10.0
+     type: diff
+   id: class-recall-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     type: dataset
+   
+
+-------------------------------
+Classification Metric: accuracy
+-------------------------------
+Analyzing accuracy.
+Detects when recall changes by 10%.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: classification.accuracy
+     mode: pct
+     threshold: 10.0
+     type: diff
+   id: class-accuracy-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     type: dataset
+   

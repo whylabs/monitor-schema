@@ -1,0 +1,1837 @@
+:py:mod:`monitor_schema.models`
+===============================
+
+.. py:module:: monitor_schema.models
+
+.. autoapi-nested-parse::
+
+   Console script for monitor_schema.
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   analyzer/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   column_schema/index.rst
+   commons/index.rst
+   document/index.rst
+   monitor/index.rst
+   segments/index.rst
+   utils/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.DatasetMetric
+   monitor_schema.models.SimpleColumnMetric
+   monitor_schema.models.ComplexMetrics
+   monitor_schema.models.Analyzer
+   monitor_schema.models.BaselineType
+   monitor_schema.models.ReferenceProfileId
+   monitor_schema.models.TimeRangeBaseline
+   monitor_schema.models.TrailingWindowBaseline
+   monitor_schema.models.SingleBatchBaseline
+   monitor_schema.models.DriftConfig
+   monitor_schema.models.DiffConfig
+   monitor_schema.models.ComparisonConfig
+   monitor_schema.models.ExperimentalConfig
+   monitor_schema.models.FixedThresholdsConfig
+   monitor_schema.models.ColumnListChangeConfig
+   monitor_schema.models.SeasonalConfig
+   monitor_schema.models.StddevConfig
+   monitor_schema.models.DatasetMatrix
+   monitor_schema.models.ColumnMatrix
+   monitor_schema.models.TargetLevel
+   monitor_schema.models.Metadata
+   monitor_schema.models.Segment
+   monitor_schema.models.ColumnDiscreteness
+   monitor_schema.models.ColumnDataType
+   monitor_schema.models.ColumnSchema
+   monitor_schema.models.WeightConfig
+   monitor_schema.models.SegmentWeightConfig
+   monitor_schema.models.EntitySchema
+   monitor_schema.models.ImmediateSchedule
+   monitor_schema.models.CronSchedule
+   monitor_schema.models.Cadence
+   monitor_schema.models.FixedCadenceSchedule
+   monitor_schema.models.Metadata
+   monitor_schema.models.Analyzer
+   monitor_schema.models.EntitySchema
+   monitor_schema.models.Metadata
+   monitor_schema.models.Monitor
+   monitor_schema.models.Granularity
+   monitor_schema.models.Document
+   monitor_schema.models.CronSchedule
+   monitor_schema.models.FixedCadenceSchedule
+   monitor_schema.models.ImmediateSchedule
+   monitor_schema.models.Metadata
+   monitor_schema.models.GlobalAction
+   monitor_schema.models.SendEmail
+   monitor_schema.models.SlackWebhook
+   monitor_schema.models.RawWebhook
+   monitor_schema.models.AnomalyFilter
+   monitor_schema.models.EveryAnomalyMode
+   monitor_schema.models.DigestMode
+   monitor_schema.models.Monitor
+   monitor_schema.models.SegmentTag
+   monitor_schema.models.Segment
+
+
+
+
+.. py:class:: DatasetMetric
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Metrics that are applicable at the dataset level.
+
+   .. py:attribute:: profile_count
+      :annotation: = profile.count
+
+      
+
+   .. py:attribute:: profile_last_ingestion_time
+      :annotation: = profile.last_ingestion_time
+
+      
+
+   .. py:attribute:: profile_first_ingestion_time
+      :annotation: = profile.first_ingestion_time
+
+      
+
+   .. py:attribute:: column_row_count_sum
+      :annotation: = column_row_count_sum
+
+      
+
+   .. py:attribute:: shape_column_count
+      :annotation: = shape_column_count
+
+      
+
+   .. py:attribute:: shape_row_count
+      :annotation: = shape_row_count
+
+      
+
+   .. py:attribute:: input_count
+      :annotation: = input.count
+
+      
+
+   .. py:attribute:: output_count
+      :annotation: = output.count
+
+      
+
+   .. py:attribute:: classification_f1
+      :annotation: = classification.f1
+
+      
+
+   .. py:attribute:: classification_precision
+      :annotation: = classification.precision
+
+      
+
+   .. py:attribute:: classification_recall
+      :annotation: = classification.recall
+
+      
+
+   .. py:attribute:: classification_accuracy
+      :annotation: = classification.accuracy
+
+      
+
+   .. py:attribute:: classification_auc
+      :annotation: = classification.auc
+
+      
+
+   .. py:attribute:: regression_mse
+      :annotation: = regression.mse
+
+      
+
+   .. py:attribute:: regression_mae
+      :annotation: = regression.mae
+
+      
+
+   .. py:attribute:: regression_rmse
+      :annotation: = regression.rmse
+
+      
+
+
+.. py:class:: SimpleColumnMetric
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Simple column metrics that are basically just a single number.
+
+   .. py:attribute:: count
+      :annotation: = count
+
+      
+
+   .. py:attribute:: median
+      :annotation: = median
+
+      
+
+   .. py:attribute:: max
+      :annotation: = max
+
+      
+
+   .. py:attribute:: min
+      :annotation: = min
+
+      
+
+   .. py:attribute:: mean
+      :annotation: = mean
+
+      
+
+   .. py:attribute:: stddev
+      :annotation: = stddev
+
+      
+
+   .. py:attribute:: variance
+      :annotation: = variance
+
+      
+
+   .. py:attribute:: unique_upper
+      :annotation: = unique_upper
+
+      
+
+   .. py:attribute:: unique_upper_ratio
+      :annotation: = unique_upper_ratio
+
+      
+
+   .. py:attribute:: unique_est
+      :annotation: = unique_est
+
+      
+
+   .. py:attribute:: unique_est_ratio
+      :annotation: = unique_est_ratio
+
+      
+
+   .. py:attribute:: unique_lower
+      :annotation: = unique_lower
+
+      
+
+   .. py:attribute:: unique_lower_ratio
+      :annotation: = unique_lower_ratio
+
+      
+
+   .. py:attribute:: count_bool
+      :annotation: = count_bool
+
+      
+
+   .. py:attribute:: count_bool_ratio
+      :annotation: = count_bool_ratio
+
+      
+
+   .. py:attribute:: count_integral
+      :annotation: = count_integral
+
+      
+
+   .. py:attribute:: count_integral_ratio
+      :annotation: = count_integral_ratio
+
+      
+
+   .. py:attribute:: count_fractional
+      :annotation: = count_fractional
+
+      
+
+   .. py:attribute:: count_fractional_ratio
+      :annotation: = count_fractional_ratio
+
+      
+
+   .. py:attribute:: count_string
+      :annotation: = count_string
+
+      
+
+   .. py:attribute:: count_string_ratio
+      :annotation: = count_string_ratio
+
+      
+
+   .. py:attribute:: count_null
+      :annotation: = count_null
+
+      
+
+   .. py:attribute:: count_null_ratio
+      :annotation: = count_null_ratio
+
+      
+
+   .. py:attribute:: inferred_data_type
+      :annotation: = inferred_data_type
+
+      
+
+   .. py:attribute:: quantile_p5
+      :annotation: = quantile_5
+
+      
+
+   .. py:attribute:: quantile_p75
+      :annotation: = quantile_75
+
+      
+
+   .. py:attribute:: quantile_p25
+      :annotation: = quantile_25
+
+      
+
+   .. py:attribute:: quantile_p90
+      :annotation: = quantile_90
+
+      
+
+   .. py:attribute:: quantile_p95
+      :annotation: = quantile_95
+
+      
+
+   .. py:attribute:: quantile_p99
+      :annotation: = quantile_99
+
+      
+
+
+.. py:class:: ComplexMetrics
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Sketch-based metrics that can only be processed by certain algorithms.
+
+   .. py:attribute:: histogram
+      :annotation: = histogram
+
+      
+
+   .. py:attribute:: frequent_items
+      :annotation: = frequent_items
+
+      
+
+   .. py:attribute:: unique_sketch
+      :annotation: = unique_sketch
+
+      
+
+   .. py:attribute:: column_list
+      :annotation: = column_list
+
+      
+
+
+.. py:class:: Analyzer(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Configuration for running an analysis.
+
+   An analysis targets a metric (note that a metric could be a complex object) for one or multiple fields in
+   one or multiple segments. The output is a list of 'anomalies' that might show issues with data.
+
+   .. py:class:: Config
+
+      Updates JSON schema anyOf to oneOf.
+
+      .. py:method:: schema_extra(schema: Dict[str, Any], model: pydantic.BaseModel) -> None
+         :staticmethod:
+
+         Update specific fields here (for Union type, specifically).
+
+
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: id
+      :annotation: :str
+
+      
+
+   .. py:attribute:: displayName
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: tags
+      :annotation: :Optional[List[constr(min_length=3, max_length=32, regex='[0-9a-zA-Z\\-_]')]]
+
+      
+
+   .. py:attribute:: schedule
+      :annotation: :Optional[Union[monitor_schema.models.commons.CronSchedule, monitor_schema.models.commons.FixedCadenceSchedule]]
+
+      
+
+   .. py:attribute:: disabled
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: targetMatrix
+      :annotation: :Union[monitor_schema.models.analyzer.targets.ColumnMatrix, monitor_schema.models.analyzer.targets.DatasetMatrix]
+
+      
+
+   .. py:attribute:: dataReadinessDuration
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: batchCoolDownPeriod
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: backfillGracePeriodDuration
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: config
+      :annotation: :Union[monitor_schema.models.analyzer.algorithms.DiffConfig, monitor_schema.models.analyzer.algorithms.ComparisonConfig, monitor_schema.models.analyzer.algorithms.ListComparisonConfig, monitor_schema.models.analyzer.algorithms.ColumnListChangeConfig, monitor_schema.models.analyzer.algorithms.FixedThresholdsConfig, monitor_schema.models.analyzer.algorithms.StddevConfig, monitor_schema.models.analyzer.algorithms.DriftConfig, monitor_schema.models.analyzer.algorithms.ExperimentalConfig, monitor_schema.models.analyzer.algorithms.SeasonalConfig]
+
+      
+
+
+.. py:class:: BaselineType
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Supported baseline types.
+
+   .. py:attribute:: BatchTimestamp
+      :annotation: = BatchTimestamp
+
+      
+
+   .. py:attribute:: Reference
+      :annotation: = Reference
+
+      
+
+   .. py:attribute:: TrailingWindow
+      :annotation: = TrailingWindow
+
+      
+
+   .. py:attribute:: TimeRange
+      :annotation: = TimeRange
+
+      
+
+   .. py:attribute:: CurrentBatch
+      :annotation: = CurrentBatch
+
+      
+
+
+.. py:class:: ReferenceProfileId(**data: Any)
+
+   Bases: :py:obj:`_Baseline`
+
+   A baseline based on a static reference profile.
+
+   A typical use case is to use a "gold" dataset and upload its profile to WhyLabs. This can be a training dataset
+   as well for an ML model.
+
+   .. py:attribute:: type
+      :annotation: :Literal[BaselineType]
+
+      
+
+   .. py:attribute:: profileId
+      :annotation: :str
+
+      
+
+
+.. py:class:: TimeRangeBaseline(**data: Any)
+
+   Bases: :py:obj:`_SegmentBaseline`
+
+   A static time range.
+
+   Instead of using a single profile or a trailing window, user can lock in a "good" period.
+
+   .. py:attribute:: type
+      :annotation: :Literal[BaselineType]
+
+      
+
+   .. py:attribute:: range
+      :annotation: :monitor_schema.models.commons.TimeRange
+
+      
+
+
+.. py:class:: TrailingWindowBaseline(**data: Any)
+
+   Bases: :py:obj:`_SegmentBaseline`
+
+   A dynamic trailing window.
+
+   This is useful if you don't have a static baseline to monitor against. This is the default mode for most
+   monitors.
+
+   .. py:attribute:: type
+      :annotation: :Literal[BaselineType]
+
+      
+
+   .. py:attribute:: size
+      :annotation: :int
+
+      
+
+   .. py:attribute:: offset
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: exclusionRanges
+      :annotation: :Optional[List[monitor_schema.models.commons.TimeRange]]
+
+      
+
+
+.. py:class:: SingleBatchBaseline(**data: Any)
+
+   Bases: :py:obj:`_SegmentBaseline`
+
+   Using current batch.
+
+   This is used when you want to use one batch to monitor another batch in a different metric entity.
+
+   .. py:attribute:: type
+      :annotation: :Literal[BaselineType]
+
+      
+
+   .. py:attribute:: offset
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: datasetId
+      :annotation: :str
+
+      
+
+
+.. py:class:: DriftConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   An analyzer using stddev for a window of time range.
+
+   This analysis will detect whether the data drifts or not. By default, we use hellinger distance with a threshold
+   of 0.7.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: algorithm
+      :annotation: :Literal[hellinger, ks_test, kl_divergence, variation_distance]
+
+      
+
+   .. py:attribute:: metric
+      :annotation: :Literal[ComplexMetrics, ComplexMetrics]
+
+      
+
+   .. py:attribute:: threshold
+      :annotation: :float
+
+      
+
+   .. py:attribute:: minBatchSize
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]
+
+      
+
+
+.. py:class:: DiffConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Detecting the differences between two numerical metrics.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: mode
+      :annotation: :DiffMode
+
+      
+
+   .. py:attribute:: thresholdType
+      :annotation: :Optional[ThresholdType]
+
+      
+
+   .. py:attribute:: threshold
+      :annotation: :float
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]
+
+      
+
+
+.. py:class:: ComparisonConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Compare whether the target against a value or against a baseline's metric.
+
+   This is useful to detect data type change, for instance.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: operator
+      :annotation: :ComparisonOperator
+
+      
+
+   .. py:attribute:: expected
+      :annotation: :Optional[ExpectedValue]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Optional[Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]]
+
+      
+
+
+.. py:class:: ExperimentalConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Experimental algorithm that is not standardized by the above ones yet.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: implementation
+      :annotation: :str
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]
+
+      
+
+   .. py:attribute:: stub
+      :annotation: :Optional[AlgorithmType]
+
+      
+
+
+.. py:class:: FixedThresholdsConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Fixed threshold analysis.
+
+   If user fails to set both upper bound and lower bound, this algorithm becomes a no-op.
+   WhyLabs might enforce the present of either fields in the future.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: upper
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: lower
+      :annotation: :Optional[float]
+
+      
+
+
+.. py:class:: ColumnListChangeConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Compare whether the target is equal to a value or not.
+
+   This is useful to detect data type change, for instance.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: mode
+      :annotation: :Literal[ON_ADD_AND_REMOVE, ON_ADD, ON_REMOVE] = ON_ADD_AND_REMOVE
+
+      
+
+   .. py:attribute:: metric
+      :annotation: :Literal[ComplexMetrics]
+
+      
+
+   .. py:attribute:: exclude
+      :annotation: :Optional[List[monitor_schema.models.utils.COLUMN_NAME_TYPE]]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]
+
+      
+
+
+.. py:class:: SeasonalConfig(**data: Any)
+
+   Bases: :py:obj:`_ThresholdBaseConfig`
+
+   An analyzer using stddev for a window of time range.
+
+   This will fall back to Poisson distribution if there is only 1 value in the baseline.
+
+   This only works with TrailingWindow baseline (TODO: add backend validation)
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: algorithm
+      :annotation: :Literal[arima, rego, stastforecast]
+
+      
+
+   .. py:attribute:: minBatchSize
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: alpha
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :monitor_schema.models.analyzer.baseline.TrailingWindowBaseline
+
+      
+
+   .. py:attribute:: stddevTimeRanges
+      :annotation: :Optional[List[monitor_schema.models.commons.TimeRange]]
+
+      
+
+   .. py:attribute:: stddevMaxBatchSize
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: stddevFactor
+      :annotation: :Optional[float]
+
+      
+
+
+.. py:class:: StddevConfig(**data: Any)
+
+   Bases: :py:obj:`_ThresholdBaseConfig`
+
+   Calculates upper bounds and lower bounds based on stddev from a series of numbers.
+
+   An analyzer using stddev for a window of time range.
+
+   This calculation will fall back to Poisson distribution if there is only 1 value in the baseline.
+   For 2 values, we use the formula sqrt((x_i - avg(x))^2 / n - 1)
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: factor
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: minBatchSize
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId]
+
+      
+
+
+.. py:class:: DatasetMatrix(**data: Any)
+
+   Bases: :py:obj:`_BaseMatrix`
+
+   Define the matrix of fields and segments to fan out for monitoring.
+
+   .
+
+   .. py:attribute:: type
+      :annotation: :Literal[TargetLevel]
+
+      
+
+
+.. py:class:: ColumnMatrix(**data: Any)
+
+   Bases: :py:obj:`_BaseMatrix`
+
+   Define the matrix of columns and segments to fan out for monitoring.
+
+   .. py:attribute:: type
+      :annotation: :Literal[TargetLevel]
+
+      
+
+   .. py:attribute:: include
+      :annotation: :Optional[List[Union[ColumnGroups, monitor_schema.models.utils.COLUMN_NAME_TYPE]]]
+
+      
+
+   .. py:attribute:: exclude
+      :annotation: :Optional[List[Union[ColumnGroups, monitor_schema.models.utils.COLUMN_NAME_TYPE]]]
+
+      
+
+
+.. py:class:: TargetLevel
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Which nested level we are targeting.
+
+   .. py:attribute:: dataset
+      :annotation: = dataset
+
+      
+
+   .. py:attribute:: column
+      :annotation: = column
+
+      
+
+
+.. py:class:: Metadata(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Metadata for a top-level objects such as monitors, analyzers, and schema.
+
+   This object is managed by WhyLabs. Any user-provided values will be ignored on WhyLabs side.
+
+   .. py:attribute:: version
+      :annotation: :int
+
+      
+
+   .. py:attribute:: schemaVersion
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: updatedTimestamp
+      :annotation: :int
+
+      
+
+   .. py:attribute:: author
+      :annotation: :str
+
+      
+
+   .. py:attribute:: description
+      :annotation: :Optional[str]
+
+      
+
+
+.. py:class:: Segment(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   A segment is a list of tags.
+
+   We normalize these in the backend.
+
+   .. py:attribute:: tags
+      :annotation: :List[SegmentTag]
+
+      
+
+
+.. py:class:: ColumnDiscreteness
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Classifying the type.
+
+   .. py:attribute:: discrete
+      :annotation: = discrete
+
+      
+
+   .. py:attribute:: continuous
+      :annotation: = continuous
+
+      
+
+
+.. py:class:: ColumnDataType
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Options for configuring data type for a column.
+
+   .. py:attribute:: integral
+      :annotation: = integral
+
+      
+
+   .. py:attribute:: fractional
+      :annotation: = fractional
+
+      
+
+   .. py:attribute:: boolean
+      :annotation: = bool
+
+      
+
+   .. py:attribute:: string
+      :annotation: = string
+
+      
+
+   .. py:attribute:: unknown
+      :annotation: = unknown
+
+      
+
+   .. py:attribute:: null
+      :annotation: = null
+
+      
+
+
+.. py:class:: ColumnSchema(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Schema configuration for a column.
+
+   Should be generated by WhyLabs originally but can be overridden by users.
+
+   .. py:attribute:: discreteness
+      :annotation: :ColumnDiscreteness
+
+      
+
+   .. py:attribute:: dataType
+      :annotation: :ColumnDataType
+
+      
+
+   .. py:attribute:: classifier
+      :annotation: :Optional[str]
+
+      
+
+
+.. py:class:: WeightConfig(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Object that specifies column weights.
+
+   - By default, the weight of a column is None (unspecified)
+   - If the weight is unspecified, the column is EXCLUDED when you perform a filter/sort by weight
+   - For sorting, unweighted column take the LEAST PRECEDENCE, meaning that weight column have higher priorities
+   - They are not hierarchical: if a segment weight config is specified and a column does not have a weight in that
+   config, we will not use any hierarchy to resolve the value. It will be None
+   - Order of unweighted column is undefined.
+
+   .. py:attribute:: weights
+      :annotation: :Dict[monitor_schema.models.utils.COLUMN_NAME_TYPE, float]
+
+      
+
+
+.. py:class:: SegmentWeightConfig(**data: Any)
+
+   Bases: :py:obj:`WeightConfig`
+
+   Object that specifies column weights for a segment.
+
+   .. py:attribute:: segment
+      :annotation: :Optional[monitor_schema.models.segments.Segment]
+
+      
+
+
+.. py:class:: EntitySchema(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Schema definition of an entity.
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: columns
+      :annotation: :Dict[monitor_schema.models.utils.COLUMN_NAME_TYPE, ColumnSchema]
+
+      
+
+
+.. py:class:: ImmediateSchedule(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Schedule the monitor to run immediately.
+
+   .. py:attribute:: type
+      :annotation: :Literal[immediate]
+
+      
+
+
+.. py:class:: CronSchedule(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Support for scheduling.
+
+   .. py:attribute:: type
+      :annotation: :Literal[CronSchedule.cron]
+
+      
+
+   .. py:attribute:: cron
+      :annotation: :str
+
+      
+
+   .. py:attribute:: exclusionRanges
+      :annotation: :Optional[List[TimeRange]]
+
+      
+
+
+.. py:class:: Cadence
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Cadence for an analyzer or monitor run.
+
+   .. py:attribute:: hourly
+      :annotation: = hourly
+
+      
+
+   .. py:attribute:: daily
+      :annotation: = daily
+
+      
+
+   .. py:attribute:: weekly
+      :annotation: = weekly
+
+      
+
+   .. py:attribute:: monthly
+      :annotation: = monthly
+
+      
+
+
+.. py:class:: FixedCadenceSchedule(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Support for scheduling based on a predefined cadence.
+
+   .. py:attribute:: type
+      :annotation: :Literal[fixed]
+
+      
+
+   .. py:attribute:: cadence
+      :annotation: :Literal[Cadence, Cadence, Cadence, Cadence]
+
+      
+
+   .. py:attribute:: exclusionRanges
+      :annotation: :Optional[List[TimeRange]]
+
+      
+
+
+.. py:class:: Metadata(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Metadata for a top-level objects such as monitors, analyzers, and schema.
+
+   This object is managed by WhyLabs. Any user-provided values will be ignored on WhyLabs side.
+
+   .. py:attribute:: version
+      :annotation: :int
+
+      
+
+   .. py:attribute:: schemaVersion
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: updatedTimestamp
+      :annotation: :int
+
+      
+
+   .. py:attribute:: author
+      :annotation: :str
+
+      
+
+   .. py:attribute:: description
+      :annotation: :Optional[str]
+
+      
+
+
+.. py:class:: Analyzer(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Configuration for running an analysis.
+
+   An analysis targets a metric (note that a metric could be a complex object) for one or multiple fields in
+   one or multiple segments. The output is a list of 'anomalies' that might show issues with data.
+
+   .. py:class:: Config
+
+      Updates JSON schema anyOf to oneOf.
+
+      .. py:method:: schema_extra(schema: Dict[str, Any], model: pydantic.BaseModel) -> None
+         :staticmethod:
+
+         Update specific fields here (for Union type, specifically).
+
+
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: id
+      :annotation: :str
+
+      
+
+   .. py:attribute:: displayName
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: tags
+      :annotation: :Optional[List[constr(min_length=3, max_length=32, regex='[0-9a-zA-Z\\-_]')]]
+
+      
+
+   .. py:attribute:: schedule
+      :annotation: :Optional[Union[monitor_schema.models.commons.CronSchedule, monitor_schema.models.commons.FixedCadenceSchedule]]
+
+      
+
+   .. py:attribute:: disabled
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: targetMatrix
+      :annotation: :Union[monitor_schema.models.analyzer.targets.ColumnMatrix, monitor_schema.models.analyzer.targets.DatasetMatrix]
+
+      
+
+   .. py:attribute:: dataReadinessDuration
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: batchCoolDownPeriod
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: backfillGracePeriodDuration
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: config
+      :annotation: :Union[monitor_schema.models.analyzer.algorithms.DiffConfig, monitor_schema.models.analyzer.algorithms.ComparisonConfig, monitor_schema.models.analyzer.algorithms.ListComparisonConfig, monitor_schema.models.analyzer.algorithms.ColumnListChangeConfig, monitor_schema.models.analyzer.algorithms.FixedThresholdsConfig, monitor_schema.models.analyzer.algorithms.StddevConfig, monitor_schema.models.analyzer.algorithms.DriftConfig, monitor_schema.models.analyzer.algorithms.ExperimentalConfig, monitor_schema.models.analyzer.algorithms.SeasonalConfig]
+
+      
+
+
+.. py:class:: EntitySchema(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Schema definition of an entity.
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: columns
+      :annotation: :Dict[monitor_schema.models.utils.COLUMN_NAME_TYPE, ColumnSchema]
+
+      
+
+
+.. py:class:: Metadata(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Metadata for a top-level objects such as monitors, analyzers, and schema.
+
+   This object is managed by WhyLabs. Any user-provided values will be ignored on WhyLabs side.
+
+   .. py:attribute:: version
+      :annotation: :int
+
+      
+
+   .. py:attribute:: schemaVersion
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: updatedTimestamp
+      :annotation: :int
+
+      
+
+   .. py:attribute:: author
+      :annotation: :str
+
+      
+
+   .. py:attribute:: description
+      :annotation: :Optional[str]
+
+      
+
+
+.. py:class:: Monitor(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Customer specified monitor configs.
+
+   .. py:class:: Config
+
+      Updates JSON schema anyOf to oneOf.
+
+      .. py:method:: schema_extra(schema: Dict[str, Any], model: pydantic.BaseModel) -> None
+         :staticmethod:
+
+         Update specific fields here (for Union type, specifically).
+
+
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: id
+      :annotation: :str
+
+      
+
+   .. py:attribute:: displayName
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: tags
+      :annotation: :Optional[List[constr(min_length=3, max_length=32, regex='[0-9a-zA-Z\\-_]')]]
+
+      
+
+   .. py:attribute:: analyzerIds
+      :annotation: :List[constr(regex='^[A-Za-z0-9_\\-]+$')]
+
+      
+
+   .. py:attribute:: schedule
+      :annotation: :Union[monitor_schema.models.commons.FixedCadenceSchedule, monitor_schema.models.commons.CronSchedule, monitor_schema.models.commons.ImmediateSchedule]
+
+      
+
+   .. py:attribute:: disabled
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: severity
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: mode
+      :annotation: :Union[EveryAnomalyMode, DigestMode]
+
+      
+
+   .. py:attribute:: actions
+      :annotation: :List[Union[GlobalAction, SendEmail, SlackWebhook, RawWebhook]]
+
+      
+
+
+.. py:class:: Granularity
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Supported granularity.
+
+   .. py:attribute:: hourly
+      :annotation: = hourly
+
+      
+
+   .. py:attribute:: daily
+      :annotation: = daily
+
+      
+
+   .. py:attribute:: weekly
+      :annotation: = weekly
+
+      
+
+   .. py:attribute:: monthly
+      :annotation: = monthly
+
+      
+
+
+.. py:class:: Document(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   The main document that dictates how the monitor should be run. This document is managed by WhyLabs internally.
+
+   .. py:attribute:: id
+      :annotation: :Optional[uuid.UUID]
+
+      
+
+   .. py:attribute:: schemaVersion
+      :annotation: :Literal[1]
+
+      
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: orgId
+      :annotation: :str
+
+      
+
+   .. py:attribute:: datasetId
+      :annotation: :str
+
+      
+
+   .. py:attribute:: granularity
+      :annotation: :Granularity
+
+      
+
+   .. py:attribute:: allowPartialTargetBatches
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: entitySchema
+      :annotation: :Optional[monitor_schema.models.column_schema.EntitySchema]
+
+      
+
+   .. py:attribute:: weightConfig
+      :annotation: :Optional[monitor_schema.models.column_schema.EntityWeights]
+
+      
+
+   .. py:attribute:: analyzers
+      :annotation: :List[monitor_schema.models.analyzer.Analyzer]
+
+      
+
+   .. py:attribute:: monitors
+      :annotation: :List[monitor_schema.models.monitor.Monitor]
+
+      
+
+
+.. py:class:: CronSchedule(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Support for scheduling.
+
+   .. py:attribute:: type
+      :annotation: :Literal[CronSchedule.cron]
+
+      
+
+   .. py:attribute:: cron
+      :annotation: :str
+
+      
+
+   .. py:attribute:: exclusionRanges
+      :annotation: :Optional[List[TimeRange]]
+
+      
+
+
+.. py:class:: FixedCadenceSchedule(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Support for scheduling based on a predefined cadence.
+
+   .. py:attribute:: type
+      :annotation: :Literal[fixed]
+
+      
+
+   .. py:attribute:: cadence
+      :annotation: :Literal[Cadence, Cadence, Cadence, Cadence]
+
+      
+
+   .. py:attribute:: exclusionRanges
+      :annotation: :Optional[List[TimeRange]]
+
+      
+
+
+.. py:class:: ImmediateSchedule(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Schedule the monitor to run immediately.
+
+   .. py:attribute:: type
+      :annotation: :Literal[immediate]
+
+      
+
+
+.. py:class:: Metadata(**data: Any)
+
+   Bases: :py:obj:`NoExtrasBaseModel`
+
+   Metadata for a top-level objects such as monitors, analyzers, and schema.
+
+   This object is managed by WhyLabs. Any user-provided values will be ignored on WhyLabs side.
+
+   .. py:attribute:: version
+      :annotation: :int
+
+      
+
+   .. py:attribute:: schemaVersion
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: updatedTimestamp
+      :annotation: :int
+
+      
+
+   .. py:attribute:: author
+      :annotation: :str
+
+      
+
+   .. py:attribute:: description
+      :annotation: :Optional[str]
+
+      
+
+
+.. py:class:: GlobalAction(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Actions that are configured at the team/organization level.
+
+   .. py:attribute:: type
+      :annotation: :Literal[global]
+
+      
+
+   .. py:attribute:: target
+      :annotation: :str
+
+      
+
+
+.. py:class:: SendEmail(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Action to send an email.
+
+   .. py:attribute:: type
+      :annotation: :Literal[email]
+
+      
+
+   .. py:attribute:: target
+      :annotation: :str
+
+      
+
+
+.. py:class:: SlackWebhook(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Action to send a Slack webhook.
+
+   .. py:attribute:: type
+      :annotation: :Literal[slack]
+
+      
+
+   .. py:attribute:: target
+      :annotation: :pydantic.HttpUrl
+
+      
+
+
+.. py:class:: RawWebhook(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Action to send a Slack webhook.
+
+   .. py:attribute:: type
+      :annotation: :Literal[raw]
+
+      
+
+   .. py:attribute:: target
+      :annotation: :pydantic.HttpUrl
+
+      
+
+
+.. py:class:: AnomalyFilter(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Filter the anomalies based on certain criteria. If the alerts are filtered down to 0, the monitor won't fire.
+
+   .. py:attribute:: includeColumns
+      :annotation: :Optional[List[monitor_schema.models.utils.COLUMN_NAME_TYPE]]
+
+      
+
+   .. py:attribute:: excludeColumns
+      :annotation: :Optional[List[monitor_schema.models.utils.COLUMN_NAME_TYPE]]
+
+      
+
+   .. py:attribute:: minWeight
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: maxWeight
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: minRankByWeight
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: maxRankByWeight
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: minTotalWeight
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: maxTotalWeight
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: minAlertCount
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: maxAlertCount
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: includeMetrics
+      :annotation: :Optional[List[monitor_schema.models.utils.METRIC_NAME_STR]]
+
+      
+
+
+.. py:class:: EveryAnomalyMode(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Config mode that indicates the monitor will send out individual messages per anomaly.
+
+   .. py:attribute:: type
+      :annotation: :Literal[EVERY_ANOMALY]
+
+      
+
+   .. py:attribute:: filter
+      :annotation: :Optional[AnomalyFilter]
+
+      
+
+
+.. py:class:: DigestMode(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Config mode that indicates the monitor will send out a digest message.
+
+   .. py:attribute:: type
+      :annotation: :Literal[DIGEST]
+
+      
+
+   .. py:attribute:: filter
+      :annotation: :Optional[AnomalyFilter]
+
+      
+
+   .. py:attribute:: creationTimeOffset
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: datasetTimestampOffset
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: groupBy
+      :annotation: :Optional[List[DigestModeGrouping]]
+
+      
+
+
+.. py:class:: Monitor(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Customer specified monitor configs.
+
+   .. py:class:: Config
+
+      Updates JSON schema anyOf to oneOf.
+
+      .. py:method:: schema_extra(schema: Dict[str, Any], model: pydantic.BaseModel) -> None
+         :staticmethod:
+
+         Update specific fields here (for Union type, specifically).
+
+
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: id
+      :annotation: :str
+
+      
+
+   .. py:attribute:: displayName
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: tags
+      :annotation: :Optional[List[constr(min_length=3, max_length=32, regex='[0-9a-zA-Z\\-_]')]]
+
+      
+
+   .. py:attribute:: analyzerIds
+      :annotation: :List[constr(regex='^[A-Za-z0-9_\\-]+$')]
+
+      
+
+   .. py:attribute:: schedule
+      :annotation: :Union[monitor_schema.models.commons.FixedCadenceSchedule, monitor_schema.models.commons.CronSchedule, monitor_schema.models.commons.ImmediateSchedule]
+
+      
+
+   .. py:attribute:: disabled
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: severity
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: mode
+      :annotation: :Union[EveryAnomalyMode, DigestMode]
+
+      
+
+   .. py:attribute:: actions
+      :annotation: :List[Union[GlobalAction, SendEmail, SlackWebhook, RawWebhook]]
+
+      
+
+
+.. py:class:: SegmentTag(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   A single tag key value pair for a segment.
+
+   .. py:attribute:: key
+      :annotation: :str
+
+      
+
+   .. py:attribute:: value
+      :annotation: :str
+
+      
+
+
+.. py:class:: Segment(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   A segment is a list of tags.
+
+   We normalize these in the backend.
+
+   .. py:attribute:: tags
+      :annotation: :List[SegmentTag]
+
+      
+
+

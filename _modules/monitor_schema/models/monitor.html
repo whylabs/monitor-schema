@@ -1,0 +1,541 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
+        <title>monitor_schema.models.monitor - Monitor Schema documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Monitor Schema  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Monitor Schema  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../examples.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../samples/basic-configs.html">Basic: Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../samples/drift-configs.html">Drift: Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../samples/perf-classification.html">Perf: Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../samples/perf-regression.html">Perf: Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../samples/target-matrix-configs.html">Target Matrix: Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../samples/integration.html">Integration: Health Check</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Overall</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../main.html">Top Level</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.Document.html">monitor_schema.models.Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.Monitor.html">monitor_schema.models.Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.Analyzer.html">monitor_schema.models.Analyzer</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../main.html#target-baselines">Target &amp; Baselines</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.ColumnMatrix.html">monitor_schema.models.ColumnMatrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.DatasetMatrix.html">monitor_schema.models.DatasetMatrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.ReferenceProfileId.html">monitor_schema.models.ReferenceProfileId</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.TimeRangeBaseline.html">monitor_schema.models.TimeRangeBaseline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.TrailingWindowBaseline.html">monitor_schema.models.TrailingWindowBaseline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.SingleBatchBaseline.html">monitor_schema.models.SingleBatchBaseline</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../main.html#calculation-configs">Calculation Configs</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.DriftConfig.html">monitor_schema.models.DriftConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.DiffConfig.html">monitor_schema.models.DiffConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.ComparisonConfig.html">monitor_schema.models.ComparisonConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.ExperimentalConfig.html">monitor_schema.models.ExperimentalConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.FixedThresholdsConfig.html">monitor_schema.models.FixedThresholdsConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.ColumnListChangeConfig.html">monitor_schema.models.ColumnListChangeConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.SeasonalConfig.html">monitor_schema.models.SeasonalConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../_toc/monitor_schema.models.StddevConfig.html">monitor_schema.models.StddevConfig</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">APIs:</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../autoapi/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../autoapi/monitor_schema/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../autoapi/monitor_schema/models/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../../autoapi/monitor_schema/models/analyzer/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.analyzer</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../../autoapi/monitor_schema/models/analyzer/algorithms/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.analyzer.algorithms</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../autoapi/monitor_schema/models/analyzer/analyzer/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.analyzer.analyzer</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../autoapi/monitor_schema/models/analyzer/baseline/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.analyzer.baseline</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../../autoapi/monitor_schema/models/analyzer/targets/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.analyzer.targets</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../../autoapi/monitor_schema/models/column_schema/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.column_schema</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../autoapi/monitor_schema/models/commons/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.commons</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../autoapi/monitor_schema/models/document/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.document</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../autoapi/monitor_schema/models/monitor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.monitor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../autoapi/monitor_schema/models/segments/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.segments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../autoapi/monitor_schema/models/utils/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.models.utils</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../autoapi/monitor_schema/cli/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.cli</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../autoapi/monitor_schema/monitor_schema/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">monitor_schema.monitor_schema</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for monitor_schema.models.monitor</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Schema for configuring a monitor.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">HttpUrl</span><span class="p">,</span> <span class="n">constr</span>
+
+<span class="kn">from</span> <span class="nn">monitor_schema.models.commons</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CronSchedule</span><span class="p">,</span>
+    <span class="n">FixedCadenceSchedule</span><span class="p">,</span>
+    <span class="n">ImmediateSchedule</span><span class="p">,</span>
+    <span class="n">Metadata</span><span class="p">,</span>
+    <span class="n">NoExtrasBaseModel</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">monitor_schema.models.utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">COLUMN_NAME_TYPE</span><span class="p">,</span>
+    <span class="n">METRIC_NAME_STR</span><span class="p">,</span>
+    <span class="n">anyOf_to_oneOf</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="MonitorConfigMetadata"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.MonitorConfigMetadata">[docs]</a><span class="k">class</span> <span class="nc">MonitorConfigMetadata</span><span class="p">(</span><span class="n">NoExtrasBaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Metadata related to a monitor.&quot;&quot;&quot;</span>
+
+    <span class="n">revision</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Revision number&quot;</span><span class="p">)</span>
+    <span class="n">update_timestamp</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Last update timestamp of this config&quot;</span><span class="p">)</span>
+    <span class="n">update_author</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;The entity that updated this config&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GlobalAction"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.GlobalAction">[docs]</a><span class="k">class</span> <span class="nc">GlobalAction</span><span class="p">(</span><span class="n">NoExtrasBaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Actions that are configured at the team/organization level.&quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;global&#39;</span><span class="p">]</span>
+    <span class="n">target</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;The unique action ID in the platform&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="s2">&quot;[a-zA-Z0-9</span><span class="se">\\</span><span class="s2">-_]+&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SendEmail"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.SendEmail">[docs]</a><span class="k">class</span> <span class="nc">SendEmail</span><span class="p">(</span><span class="n">NoExtrasBaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Action to send an email.&quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
+    <span class="n">target</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Destination email&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SlackWebhook"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.SlackWebhook">[docs]</a><span class="k">class</span> <span class="nc">SlackWebhook</span><span class="p">(</span><span class="n">NoExtrasBaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Action to send a Slack webhook.&quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;slack&#39;</span><span class="p">]</span>
+    <span class="n">target</span><span class="p">:</span> <span class="n">HttpUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;The Slack webhook&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RawWebhook"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.RawWebhook">[docs]</a><span class="k">class</span> <span class="nc">RawWebhook</span><span class="p">(</span><span class="n">NoExtrasBaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Action to send a Slack webhook.&quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;raw&#39;</span><span class="p">]</span>
+    <span class="n">target</span><span class="p">:</span> <span class="n">HttpUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Sending raw unformatted message in JSON format to a webhook&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AnomalyFilter"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.AnomalyFilter">[docs]</a><span class="k">class</span> <span class="nc">AnomalyFilter</span><span class="p">(</span><span class="n">NoExtrasBaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Filter the anomalies based on certain criteria. If the alerts are filtered down to 0, the monitor won&#39;t fire.&quot;&quot;&quot;</span>
+
+    <span class="n">includeColumns</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">COLUMN_NAME_TYPE</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>  <span class="c1"># type: ignore</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;IncludeColumns&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If set, we only include anomalies from these columns&quot;</span><span class="p">,</span>
+        <span class="n">max_items</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">excludeColumns</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">COLUMN_NAME_TYPE</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>  <span class="c1"># type: ignore</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ExcludeColumns&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If set, we will exclude anomalies from these columns. This is applied AFTER the includeColumns&quot;</span><span class="p">,</span>
+        <span class="n">max_items</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">minWeight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MinWeight&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;We will include only features with weights greater &quot;</span>
+        <span class="s2">&quot;than or equal to this value. NOT SUPPORTED YET&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">maxWeight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MaxWeight&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;We will include only features with weights less than&quot;</span> <span class="s2">&quot;or equal to this value. NOT SUPPORTED YET&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">minRankByWeight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MinRankByWeight&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Include only features ranked greater than or equal to&quot;</span>
+        <span class="s2">&quot;this value by weight. If features have the same weight&quot;</span>
+        <span class="s2">&quot;, we order them alphabetically. NOT SUPPORTED YET&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">maxRankByWeight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MaxRankByWeight&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Include only features ranked less than or equal to&quot;</span>
+        <span class="s2">&quot;this value by weight. If features have the same &quot;</span>
+        <span class="s2">&quot;weight, we order them alphabetically. NOT &quot;</span>
+        <span class="s2">&quot;SUPPORTED YET&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">minTotalWeight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MinTotalWeight&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Only fire the monitor if the total weights of the&quot;</span>
+        <span class="s2">&quot; alerts (based on feature weights) is greater than or &quot;</span>
+        <span class="s2">&quot;equal to this value. NOT SUPPORTED YET&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">maxTotalWeight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MaxTotalWeight&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Only fire the monitor if the total weights of the&quot;</span>
+        <span class="s2">&quot; alerts (based on feature weights) is less than or &quot;</span>
+        <span class="s2">&quot;equal to this value. NOT SUPPORTED YET&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">minAlertCount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MinAlertCount&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If the total alert count is less than this value, the &quot;</span> <span class="s2">&quot;monitor won&#39;t fire. NOT SUPPORTED YET&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">maxAlertCount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MaxAlertCount&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If the total alert count is greater than this value, &quot;</span> <span class="s2">&quot;the monitor won&#39;t fire. NOT SUPPORTED YET&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">includeMetrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">METRIC_NAME_STR</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>  <span class="c1"># type: ignore</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;IncludeMetrics&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Metrics to filter by. NOT SUPPORTED YET&quot;</span><span class="p">,</span>
+        <span class="n">max_items</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<span class="n">excludeMetrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">METRIC_NAME_STR</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>  <span class="c1"># type: ignore</span>
+    <span class="kc">None</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ExcludeMetrics&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Metrics to filter by. NOT SUPPORTED YET&quot;</span><span class="p">,</span>
+    <span class="n">max_items</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="EveryAnomalyMode"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.EveryAnomalyMode">[docs]</a><span class="k">class</span> <span class="nc">EveryAnomalyMode</span><span class="p">(</span><span class="n">NoExtrasBaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Config mode that indicates the monitor will send out individual messages per anomaly.&quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;EVERY_ANOMALY&#39;</span><span class="p">]</span>
+    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AnomalyFilter</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Filter for anomalies&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DigestModeGrouping"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.DigestModeGrouping">[docs]</a><span class="k">class</span> <span class="nc">DigestModeGrouping</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Enable the ability to group digest by various fields.&quot;&quot;&quot;</span>
+
+    <span class="n">byField</span> <span class="o">=</span> <span class="s1">&#39;byColumn&#39;</span>
+    <span class="n">byDataset</span> <span class="o">=</span> <span class="s1">&#39;byDataset&#39;</span>
+    <span class="n">byAnalyzer</span> <span class="o">=</span> <span class="s1">&#39;byAnalyzer&#39;</span>
+    <span class="n">byDay</span> <span class="o">=</span> <span class="s1">&#39;byDay&#39;</span>
+    <span class="n">byHour</span> <span class="o">=</span> <span class="s1">&#39;byHour&#39;</span></div>
+
+
+<div class="viewcode-block" id="DigestMode"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.DigestMode">[docs]</a><span class="k">class</span> <span class="nc">DigestMode</span><span class="p">(</span><span class="n">NoExtrasBaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Config mode that indicates the monitor will send out a digest message.&quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;DIGEST&#39;</span><span class="p">]</span>
+    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AnomalyFilter</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Filter for anomalies&quot;</span><span class="p">)</span>
+    <span class="n">creationTimeOffset</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="c1"># format=&#39;duration&#39;, # TODO: is not supported by draft-7, only in draft 2019</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;CreationTimeOffset&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Optional for Immediate digest, required for Scheduled digest. The earliest creation timestamp&quot;</span>
+        <span class="s2">&quot; that we will &quot;</span>
+        <span class="s2">&quot;filter by to build the digest. ISO 8601 &quot;</span>
+        <span class="s2">&quot;format for timedelta.&quot;</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">datasetTimestampOffset</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="c1"># format=&#39;duration&#39;,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;DatasetTimestampOffset&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Optional for Immediate digest, required for Scheduled digest. &quot;</span>
+        <span class="s2">&quot;The earliest dataset timestamp that we will filter by in the digest&quot;</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">groupBy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">DigestModeGrouping</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Default is None.If this is set, we will group alerts by these groupings and emit multiple messages&quot;</span>
+        <span class="s2">&quot; per group.&quot;</span><span class="p">,</span>
+        <span class="n">max_items</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Monitor"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.Monitor">[docs]</a><span class="k">class</span> <span class="nc">Monitor</span><span class="p">(</span><span class="n">NoExtrasBaseModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Customer specified monitor configs.&quot;&quot;&quot;</span>
+
+    <span class="n">metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Metadata</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Meta. This is to track various metadata for auditing.&quot;</span><span class="p">)</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A human-readable alias for a monitor. Must be readable&quot;</span><span class="p">,</span>
+        <span class="n">min_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+        <span class="n">regex</span><span class="o">=</span><span class="s1">&#39;[0-9a-zA-Z</span><span class="se">\\</span><span class="s1">-_]+&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">displayName</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;DisplayName&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A display name for the monitor if view through WhyLabs UI. Can only contain dashes, underscores,&quot;</span>
+        <span class="s2">&quot;spaces, and alphanumeric characters&quot;</span><span class="p">,</span>
+        <span class="n">min_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+        <span class="n">regex</span><span class="o">=</span><span class="s1">&#39;[0-9a-zA-Z </span><span class="se">\\</span><span class="s1">-_]+&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>  <span class="c1"># type: ignore</span>
+        <span class="n">List</span><span class="p">[</span><span class="n">constr</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="s2">&quot;[0-9a-zA-Z</span><span class="se">\\</span><span class="s2">-_]&quot;</span><span class="p">)]</span>  <span class="c1"># noqa F722</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A list of tags that are associated with the monitor.&quot;</span><span class="p">)</span>
+    <span class="n">analyzerIds</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">constr</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&quot;^[A-Za-z0-9_</span><span class="se">\\</span><span class="s2">-]+$&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>  <span class="c1"># type: ignore # noqa: F722</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;AnalyzerIds&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The corresponding analyzer ID. Even though it&#39;s plural, we only support one analyzer at the &quot;</span>
+        <span class="s2">&quot;moment&quot;</span><span class="p">,</span>
+        <span class="n">max_items</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">schedule</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">FixedCadenceSchedule</span><span class="p">,</span> <span class="n">CronSchedule</span><span class="p">,</span> <span class="n">ImmediateSchedule</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Schedule of the monitor. We only support hourly monitor at &quot;</span> <span class="s2">&quot;the finest granularity&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">disabled</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether the monitor is enabled or not&quot;</span><span class="p">)</span>
+    <span class="n">severity</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The severity of the monitor messages&quot;</span><span class="p">)</span>
+    <span class="n">mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">EveryAnomalyMode</span><span class="p">,</span> <span class="n">DigestMode</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Notification mode and how we might handle different analysis&#39;</span><span class="p">,</span>
+        <span class="n">discriminator</span><span class="o">=</span><span class="s1">&#39;type&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">actions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">GlobalAction</span><span class="p">,</span> <span class="n">SendEmail</span><span class="p">,</span> <span class="n">SlackWebhook</span><span class="p">,</span> <span class="n">RawWebhook</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of destination for the outgoing messages&quot;</span><span class="p">,</span>
+        <span class="n">max_items</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="Monitor.Config"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.Monitor.Config">[docs]</a>    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Updates JSON schema anyOf to oneOf.&quot;&quot;&quot;</span>
+
+        <span class="c1"># noinspection PyUnusedLocal</span>
+<div class="viewcode-block" id="Monitor.Config.schema_extra"><a class="viewcode-back" href="../../../autoapi/monitor_schema/models/monitor/index.html#monitor_schema.models.Monitor.Config.schema_extra">[docs]</a>        <span class="nd">@staticmethod</span>
+        <span class="k">def</span> <span class="nf">schema_extra</span><span class="p">(</span><span class="n">schema</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">model</span><span class="p">:</span> <span class="n">BaseModel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="sd">&quot;&quot;&quot;Update specific fields here (for Union type, specifically).&quot;&quot;&quot;</span>
+            <span class="n">anyOf_to_oneOf</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">)</span>
+            <span class="n">anyOf_to_oneOf</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="s1">&#39;schedule&#39;</span><span class="p">)</span></div></div></div>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, WhyLabs
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    </body>
+</html>

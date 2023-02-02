@@ -1,0 +1,829 @@
+:py:mod:`monitor_schema.models.analyzer.algorithms`
+===================================================
+
+.. py:module:: monitor_schema.models.analyzer.algorithms
+
+.. autoapi-nested-parse::
+
+   Collections of support algorithms.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.analyzer.algorithms.AlgorithmType
+   monitor_schema.models.analyzer.algorithms.DatasetMetric
+   monitor_schema.models.analyzer.algorithms.SimpleColumnMetric
+   monitor_schema.models.analyzer.algorithms.ComplexMetrics
+   monitor_schema.models.analyzer.algorithms.AlgorithmConfig
+   monitor_schema.models.analyzer.algorithms.ExpectedValue
+   monitor_schema.models.analyzer.algorithms.ComparisonOperator
+   monitor_schema.models.analyzer.algorithms.ListComparisonOperator
+   monitor_schema.models.analyzer.algorithms.ComparisonConfig
+   monitor_schema.models.analyzer.algorithms.ListComparisonConfig
+   monitor_schema.models.analyzer.algorithms.ColumnListChangeConfig
+   monitor_schema.models.analyzer.algorithms.FixedThresholdsConfig
+   monitor_schema.models.analyzer.algorithms._ThresholdBaseConfig
+   monitor_schema.models.analyzer.algorithms.StddevConfig
+   monitor_schema.models.analyzer.algorithms.SeasonalConfig
+   monitor_schema.models.analyzer.algorithms.DriftConfig
+   monitor_schema.models.analyzer.algorithms.ExperimentalConfig
+   monitor_schema.models.analyzer.algorithms.DiffMode
+   monitor_schema.models.analyzer.algorithms.ThresholdType
+   monitor_schema.models.analyzer.algorithms.DiffConfig
+
+
+
+
+.. py:class:: AlgorithmType
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Specify the algorithm type.
+
+   .. py:attribute:: expected
+      :annotation: = expected
+
+      
+
+   .. py:attribute:: column_list
+      :annotation: = column_list
+
+      
+
+   .. py:attribute:: comparison
+      :annotation: = comparison
+
+      
+
+   .. py:attribute:: list_comparison
+      :annotation: = list_comparison
+
+      
+
+   .. py:attribute:: diff
+      :annotation: = diff
+
+      
+
+   .. py:attribute:: drift
+      :annotation: = drift
+
+      
+
+   .. py:attribute:: stddev
+      :annotation: = stddev
+
+      
+
+   .. py:attribute:: seasonal
+      :annotation: = seasonal
+
+      
+
+   .. py:attribute:: fixed
+      :annotation: = fixed
+
+      
+
+   .. py:attribute:: experimental
+      :annotation: = experimental
+
+      
+
+
+.. py:class:: DatasetMetric
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Metrics that are applicable at the dataset level.
+
+   .. py:attribute:: profile_count
+      :annotation: = profile.count
+
+      
+
+   .. py:attribute:: profile_last_ingestion_time
+      :annotation: = profile.last_ingestion_time
+
+      
+
+   .. py:attribute:: profile_first_ingestion_time
+      :annotation: = profile.first_ingestion_time
+
+      
+
+   .. py:attribute:: column_row_count_sum
+      :annotation: = column_row_count_sum
+
+      
+
+   .. py:attribute:: shape_column_count
+      :annotation: = shape_column_count
+
+      
+
+   .. py:attribute:: shape_row_count
+      :annotation: = shape_row_count
+
+      
+
+   .. py:attribute:: input_count
+      :annotation: = input.count
+
+      
+
+   .. py:attribute:: output_count
+      :annotation: = output.count
+
+      
+
+   .. py:attribute:: classification_f1
+      :annotation: = classification.f1
+
+      
+
+   .. py:attribute:: classification_precision
+      :annotation: = classification.precision
+
+      
+
+   .. py:attribute:: classification_recall
+      :annotation: = classification.recall
+
+      
+
+   .. py:attribute:: classification_accuracy
+      :annotation: = classification.accuracy
+
+      
+
+   .. py:attribute:: classification_auc
+      :annotation: = classification.auc
+
+      
+
+   .. py:attribute:: regression_mse
+      :annotation: = regression.mse
+
+      
+
+   .. py:attribute:: regression_mae
+      :annotation: = regression.mae
+
+      
+
+   .. py:attribute:: regression_rmse
+      :annotation: = regression.rmse
+
+      
+
+
+.. py:class:: SimpleColumnMetric
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Simple column metrics that are basically just a single number.
+
+   .. py:attribute:: count
+      :annotation: = count
+
+      
+
+   .. py:attribute:: median
+      :annotation: = median
+
+      
+
+   .. py:attribute:: max
+      :annotation: = max
+
+      
+
+   .. py:attribute:: min
+      :annotation: = min
+
+      
+
+   .. py:attribute:: mean
+      :annotation: = mean
+
+      
+
+   .. py:attribute:: stddev
+      :annotation: = stddev
+
+      
+
+   .. py:attribute:: variance
+      :annotation: = variance
+
+      
+
+   .. py:attribute:: unique_upper
+      :annotation: = unique_upper
+
+      
+
+   .. py:attribute:: unique_upper_ratio
+      :annotation: = unique_upper_ratio
+
+      
+
+   .. py:attribute:: unique_est
+      :annotation: = unique_est
+
+      
+
+   .. py:attribute:: unique_est_ratio
+      :annotation: = unique_est_ratio
+
+      
+
+   .. py:attribute:: unique_lower
+      :annotation: = unique_lower
+
+      
+
+   .. py:attribute:: unique_lower_ratio
+      :annotation: = unique_lower_ratio
+
+      
+
+   .. py:attribute:: count_bool
+      :annotation: = count_bool
+
+      
+
+   .. py:attribute:: count_bool_ratio
+      :annotation: = count_bool_ratio
+
+      
+
+   .. py:attribute:: count_integral
+      :annotation: = count_integral
+
+      
+
+   .. py:attribute:: count_integral_ratio
+      :annotation: = count_integral_ratio
+
+      
+
+   .. py:attribute:: count_fractional
+      :annotation: = count_fractional
+
+      
+
+   .. py:attribute:: count_fractional_ratio
+      :annotation: = count_fractional_ratio
+
+      
+
+   .. py:attribute:: count_string
+      :annotation: = count_string
+
+      
+
+   .. py:attribute:: count_string_ratio
+      :annotation: = count_string_ratio
+
+      
+
+   .. py:attribute:: count_null
+      :annotation: = count_null
+
+      
+
+   .. py:attribute:: count_null_ratio
+      :annotation: = count_null_ratio
+
+      
+
+   .. py:attribute:: inferred_data_type
+      :annotation: = inferred_data_type
+
+      
+
+   .. py:attribute:: quantile_p5
+      :annotation: = quantile_5
+
+      
+
+   .. py:attribute:: quantile_p75
+      :annotation: = quantile_75
+
+      
+
+   .. py:attribute:: quantile_p25
+      :annotation: = quantile_25
+
+      
+
+   .. py:attribute:: quantile_p90
+      :annotation: = quantile_90
+
+      
+
+   .. py:attribute:: quantile_p95
+      :annotation: = quantile_95
+
+      
+
+   .. py:attribute:: quantile_p99
+      :annotation: = quantile_99
+
+      
+
+
+.. py:class:: ComplexMetrics
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Sketch-based metrics that can only be processed by certain algorithms.
+
+   .. py:attribute:: histogram
+      :annotation: = histogram
+
+      
+
+   .. py:attribute:: frequent_items
+      :annotation: = frequent_items
+
+      
+
+   .. py:attribute:: unique_sketch
+      :annotation: = unique_sketch
+
+      
+
+   .. py:attribute:: column_list
+      :annotation: = column_list
+
+      
+
+
+.. py:class:: AlgorithmConfig(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Base algorithm config.
+
+   .. py:class:: Config
+
+      Updates JSON schema anyOf to oneOf for baseline.
+
+      .. py:method:: schema_extra(schema: Dict[str, Any], model: pydantic.BaseModel) -> None
+         :staticmethod:
+
+         Update specific fields here (for Union type, specifically).
+
+
+
+   .. py:attribute:: schemaVersion
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: params
+      :annotation: :Optional[Dict[constr(max_length=100), constr(max_length=1000)]]
+
+      
+
+   .. py:attribute:: metric
+      :annotation: :Union[DatasetMetric, SimpleColumnMetric, constr(max_length=100)]
+
+      
+
+
+.. py:class:: ExpectedValue(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Expected value: one of these fields must be set.
+
+   .. py:attribute:: str
+      :annotation: :Optional[constr(max_length=100)]
+
+      
+
+   .. py:attribute:: int
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: float
+      :annotation: :Optional[float]
+
+      
+
+
+.. py:class:: ComparisonOperator
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Operators for performing a comparison.
+
+   .. py:attribute:: eq
+      :annotation: = eq
+
+      
+
+   .. py:attribute:: gt
+      :annotation: = gt
+
+      
+
+   .. py:attribute:: lt
+      :annotation: = lt
+
+      
+
+   .. py:attribute:: ge
+      :annotation: = ge
+
+      
+
+   .. py:attribute:: le
+      :annotation: = le
+
+      
+
+
+.. py:class:: ListComparisonOperator
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Operators for performing a comparison.
+
+   .. py:attribute:: eq
+      :annotation: = in
+
+      
+
+   .. py:attribute:: gt
+      :annotation: = not_in
+
+      
+
+
+.. py:class:: ComparisonConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Compare whether the target against a value or against a baseline's metric.
+
+   This is useful to detect data type change, for instance.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: operator
+      :annotation: :ComparisonOperator
+
+      
+
+   .. py:attribute:: expected
+      :annotation: :Optional[ExpectedValue]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Optional[Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]]
+
+      
+
+
+.. py:class:: ListComparisonConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Compare whether target against a list of values.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: operator
+      :annotation: :ListComparisonOperator
+
+      
+
+   .. py:attribute:: expected
+      :annotation: :Optional[List[ExpectedValue]]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Optional[Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]]
+
+      
+
+
+.. py:class:: ColumnListChangeConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Compare whether the target is equal to a value or not.
+
+   This is useful to detect data type change, for instance.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: mode
+      :annotation: :Literal[ON_ADD_AND_REMOVE, ON_ADD, ON_REMOVE] = ON_ADD_AND_REMOVE
+
+      
+
+   .. py:attribute:: metric
+      :annotation: :Literal[ComplexMetrics]
+
+      
+
+   .. py:attribute:: exclude
+      :annotation: :Optional[List[monitor_schema.models.utils.COLUMN_NAME_TYPE]]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]
+
+      
+
+
+.. py:class:: FixedThresholdsConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Fixed threshold analysis.
+
+   If user fails to set both upper bound and lower bound, this algorithm becomes a no-op.
+   WhyLabs might enforce the present of either fields in the future.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: upper
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: lower
+      :annotation: :Optional[float]
+
+      
+
+
+.. py:class:: _ThresholdBaseConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Base algorithm config.
+
+   .. py:attribute:: maxUpperThreshold
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: minLowerThreshold
+      :annotation: :Optional[float]
+
+      
+
+
+.. py:class:: StddevConfig(**data: Any)
+
+   Bases: :py:obj:`_ThresholdBaseConfig`
+
+   Calculates upper bounds and lower bounds based on stddev from a series of numbers.
+
+   An analyzer using stddev for a window of time range.
+
+   This calculation will fall back to Poisson distribution if there is only 1 value in the baseline.
+   For 2 values, we use the formula sqrt((x_i - avg(x))^2 / n - 1)
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: factor
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: minBatchSize
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId]
+
+      
+
+
+.. py:class:: SeasonalConfig(**data: Any)
+
+   Bases: :py:obj:`_ThresholdBaseConfig`
+
+   An analyzer using stddev for a window of time range.
+
+   This will fall back to Poisson distribution if there is only 1 value in the baseline.
+
+   This only works with TrailingWindow baseline (TODO: add backend validation)
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: algorithm
+      :annotation: :Literal[arima, rego, stastforecast]
+
+      
+
+   .. py:attribute:: minBatchSize
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: alpha
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :monitor_schema.models.analyzer.baseline.TrailingWindowBaseline
+
+      
+
+   .. py:attribute:: stddevTimeRanges
+      :annotation: :Optional[List[monitor_schema.models.commons.TimeRange]]
+
+      
+
+   .. py:attribute:: stddevMaxBatchSize
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: stddevFactor
+      :annotation: :Optional[float]
+
+      
+
+
+.. py:class:: DriftConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   An analyzer using stddev for a window of time range.
+
+   This analysis will detect whether the data drifts or not. By default, we use hellinger distance with a threshold
+   of 0.7.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: algorithm
+      :annotation: :Literal[hellinger, ks_test, kl_divergence, variation_distance]
+
+      
+
+   .. py:attribute:: metric
+      :annotation: :Literal[ComplexMetrics, ComplexMetrics]
+
+      
+
+   .. py:attribute:: threshold
+      :annotation: :float
+
+      
+
+   .. py:attribute:: minBatchSize
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]
+
+      
+
+
+.. py:class:: ExperimentalConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Experimental algorithm that is not standardized by the above ones yet.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: implementation
+      :annotation: :str
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]
+
+      
+
+   .. py:attribute:: stub
+      :annotation: :Optional[AlgorithmType]
+
+      
+
+
+.. py:class:: DiffMode
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Whether to use the absolute difference or the percentage to calculate the difference.
+
+   .. py:attribute:: abs
+      :annotation: = abs
+
+      
+
+   .. py:attribute:: pct
+      :annotation: = pct
+
+      
+
+
+.. py:class:: ThresholdType
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Threshold Type declaring the upper and lower bound.
+
+   By default an anomaly will be generated when the target is above or below the baseline
+   by the specified threshold.
+
+   If its only desirable to alert when the target is above the
+   baseline and not the other way around, specify upper for your ThresholdType.
+
+   .. py:attribute:: lower
+      :annotation: = lower
+
+      
+
+   .. py:attribute:: upper
+      :annotation: = upper
+
+      
+
+
+.. py:class:: DiffConfig(**data: Any)
+
+   Bases: :py:obj:`AlgorithmConfig`
+
+   Detecting the differences between two numerical metrics.
+
+   .. py:attribute:: type
+      :annotation: :Literal[AlgorithmType]
+
+      
+
+   .. py:attribute:: mode
+      :annotation: :DiffMode
+
+      
+
+   .. py:attribute:: thresholdType
+      :annotation: :Optional[ThresholdType]
+
+      
+
+   .. py:attribute:: threshold
+      :annotation: :float
+
+      
+
+   .. py:attribute:: baseline
+      :annotation: :Union[monitor_schema.models.analyzer.baseline.TrailingWindowBaseline, monitor_schema.models.analyzer.baseline.ReferenceProfileId, monitor_schema.models.analyzer.baseline.TimeRangeBaseline, monitor_schema.models.analyzer.baseline.SingleBatchBaseline]
+
+      
+
+

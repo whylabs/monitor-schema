@@ -1,0 +1,179 @@
+:py:mod:`monitor_schema.models.analyzer.baseline`
+=================================================
+
+.. py:module:: monitor_schema.models.analyzer.baseline
+
+.. autoapi-nested-parse::
+
+   Define various baselines.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.analyzer.baseline.BaselineType
+   monitor_schema.models.analyzer.baseline._Baseline
+   monitor_schema.models.analyzer.baseline._SegmentBaseline
+   monitor_schema.models.analyzer.baseline.ReferenceProfileId
+   monitor_schema.models.analyzer.baseline.TrailingWindowBaseline
+   monitor_schema.models.analyzer.baseline.TimeRangeBaseline
+   monitor_schema.models.analyzer.baseline.SingleBatchBaseline
+
+
+
+
+.. py:class:: BaselineType
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Supported baseline types.
+
+   .. py:attribute:: BatchTimestamp
+      :annotation: = BatchTimestamp
+
+      
+
+   .. py:attribute:: Reference
+      :annotation: = Reference
+
+      
+
+   .. py:attribute:: TrailingWindow
+      :annotation: = TrailingWindow
+
+      
+
+   .. py:attribute:: TimeRange
+      :annotation: = TimeRange
+
+      
+
+   .. py:attribute:: CurrentBatch
+      :annotation: = CurrentBatch
+
+      
+
+
+.. py:class:: _Baseline(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Base class for a baseline.
+
+   .. py:attribute:: datasetId
+      :annotation: :Optional[str]
+
+      
+
+
+.. py:class:: _SegmentBaseline(**data: Any)
+
+   Bases: :py:obj:`_Baseline`
+
+   Base class for a baseline.
+
+   .. py:attribute:: inheritSegment
+      :annotation: :Optional[bool]
+
+      
+
+
+.. py:class:: ReferenceProfileId(**data: Any)
+
+   Bases: :py:obj:`_Baseline`
+
+   A baseline based on a static reference profile.
+
+   A typical use case is to use a "gold" dataset and upload its profile to WhyLabs. This can be a training dataset
+   as well for an ML model.
+
+   .. py:attribute:: type
+      :annotation: :Literal[BaselineType]
+
+      
+
+   .. py:attribute:: profileId
+      :annotation: :str
+
+      
+
+
+.. py:class:: TrailingWindowBaseline(**data: Any)
+
+   Bases: :py:obj:`_SegmentBaseline`
+
+   A dynamic trailing window.
+
+   This is useful if you don't have a static baseline to monitor against. This is the default mode for most
+   monitors.
+
+   .. py:attribute:: type
+      :annotation: :Literal[BaselineType]
+
+      
+
+   .. py:attribute:: size
+      :annotation: :int
+
+      
+
+   .. py:attribute:: offset
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: exclusionRanges
+      :annotation: :Optional[List[monitor_schema.models.commons.TimeRange]]
+
+      
+
+
+.. py:class:: TimeRangeBaseline(**data: Any)
+
+   Bases: :py:obj:`_SegmentBaseline`
+
+   A static time range.
+
+   Instead of using a single profile or a trailing window, user can lock in a "good" period.
+
+   .. py:attribute:: type
+      :annotation: :Literal[BaselineType]
+
+      
+
+   .. py:attribute:: range
+      :annotation: :monitor_schema.models.commons.TimeRange
+
+      
+
+
+.. py:class:: SingleBatchBaseline(**data: Any)
+
+   Bases: :py:obj:`_SegmentBaseline`
+
+   Using current batch.
+
+   This is used when you want to use one batch to monitor another batch in a different metric entity.
+
+   .. py:attribute:: type
+      :annotation: :Literal[BaselineType]
+
+      
+
+   .. py:attribute:: offset
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: datasetId
+      :annotation: :str
+
+      
+
+

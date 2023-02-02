@@ -1,0 +1,100 @@
+:py:mod:`monitor_schema.models.analyzer.analyzer`
+=================================================
+
+.. py:module:: monitor_schema.models.analyzer.analyzer
+
+.. autoapi-nested-parse::
+
+   Schema for analyses.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.analyzer.analyzer.Analyzer
+
+
+
+
+.. py:class:: Analyzer(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Configuration for running an analysis.
+
+   An analysis targets a metric (note that a metric could be a complex object) for one or multiple fields in
+   one or multiple segments. The output is a list of 'anomalies' that might show issues with data.
+
+   .. py:class:: Config
+
+      Updates JSON schema anyOf to oneOf.
+
+      .. py:method:: schema_extra(schema: Dict[str, Any], model: pydantic.BaseModel) -> None
+         :staticmethod:
+
+         Update specific fields here (for Union type, specifically).
+
+
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: id
+      :annotation: :str
+
+      
+
+   .. py:attribute:: displayName
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: tags
+      :annotation: :Optional[List[constr(min_length=3, max_length=32, regex='[0-9a-zA-Z\\-_]')]]
+
+      
+
+   .. py:attribute:: schedule
+      :annotation: :Optional[Union[monitor_schema.models.commons.CronSchedule, monitor_schema.models.commons.FixedCadenceSchedule]]
+
+      
+
+   .. py:attribute:: disabled
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: targetMatrix
+      :annotation: :Union[monitor_schema.models.analyzer.targets.ColumnMatrix, monitor_schema.models.analyzer.targets.DatasetMatrix]
+
+      
+
+   .. py:attribute:: dataReadinessDuration
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: batchCoolDownPeriod
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: backfillGracePeriodDuration
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: config
+      :annotation: :Union[monitor_schema.models.analyzer.algorithms.DiffConfig, monitor_schema.models.analyzer.algorithms.ComparisonConfig, monitor_schema.models.analyzer.algorithms.ListComparisonConfig, monitor_schema.models.analyzer.algorithms.ColumnListChangeConfig, monitor_schema.models.analyzer.algorithms.FixedThresholdsConfig, monitor_schema.models.analyzer.algorithms.StddevConfig, monitor_schema.models.analyzer.algorithms.DriftConfig, monitor_schema.models.analyzer.algorithms.ExperimentalConfig, monitor_schema.models.analyzer.algorithms.SeasonalConfig]
+
+      
+
+

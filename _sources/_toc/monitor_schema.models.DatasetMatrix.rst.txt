@@ -1,0 +1,6 @@
+﻿monitor\_schema.models.DatasetMatrix
+====================================
+
+.. currentmodule:: monitor_schema.models
+
+.. autopydantic_model:: DatasetMatrix

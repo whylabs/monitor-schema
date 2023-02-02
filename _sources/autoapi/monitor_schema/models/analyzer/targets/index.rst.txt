@@ -1,0 +1,142 @@
+:py:mod:`monitor_schema.models.analyzer.targets`
+================================================
+
+.. py:module:: monitor_schema.models.analyzer.targets
+
+.. autoapi-nested-parse::
+
+   Define what targets for the analyses.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.analyzer.targets.TargetLevel
+   monitor_schema.models.analyzer.targets._BaseMatrix
+   monitor_schema.models.analyzer.targets.DatasetMatrix
+   monitor_schema.models.analyzer.targets.ColumnGroups
+   monitor_schema.models.analyzer.targets.ColumnMatrix
+
+
+
+
+.. py:class:: TargetLevel
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Which nested level we are targeting.
+
+   .. py:attribute:: dataset
+      :annotation: = dataset
+
+      
+
+   .. py:attribute:: column
+      :annotation: = column
+
+      
+
+
+.. py:class:: _BaseMatrix(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   No extras base model.
+
+   Inherit to prevent accidental extra fields.
+
+   .. py:attribute:: segments
+      :annotation: :Optional[List[monitor_schema.models.segments.Segment]]
+
+      
+
+
+.. py:class:: DatasetMatrix(**data: Any)
+
+   Bases: :py:obj:`_BaseMatrix`
+
+   Define the matrix of fields and segments to fan out for monitoring.
+
+   .
+
+   .. py:attribute:: type
+      :annotation: :Literal[TargetLevel]
+
+      
+
+
+.. py:class:: ColumnGroups
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Standard column groupings.
+
+   .. py:attribute:: group_continuous
+      :annotation: = group:continuous
+
+      
+
+   .. py:attribute:: group_discrete
+      :annotation: = group:discrete
+
+      
+
+   .. py:attribute:: group_input
+      :annotation: = group:input
+
+      
+
+   .. py:attribute:: group_output
+      :annotation: = group:output
+
+      
+
+   .. py:attribute:: group_bool
+      :annotation: = group:bool
+
+      
+
+   .. py:attribute:: group_int
+      :annotation: = group:int
+
+      
+
+   .. py:attribute:: group_frac
+      :annotation: = group:frac
+
+      
+
+   .. py:attribute:: group_str
+      :annotation: = group:str
+
+      
+
+
+.. py:class:: ColumnMatrix(**data: Any)
+
+   Bases: :py:obj:`_BaseMatrix`
+
+   Define the matrix of columns and segments to fan out for monitoring.
+
+   .. py:attribute:: type
+      :annotation: :Literal[TargetLevel]
+
+      
+
+   .. py:attribute:: include
+      :annotation: :Optional[List[Union[ColumnGroups, monitor_schema.models.utils.COLUMN_NAME_TYPE]]]
+
+      
+
+   .. py:attribute:: exclude
+      :annotation: :Optional[List[Union[ColumnGroups, monitor_schema.models.utils.COLUMN_NAME_TYPE]]]
+
+      
+
+

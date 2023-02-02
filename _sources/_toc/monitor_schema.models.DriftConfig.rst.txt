@@ -1,0 +1,6 @@
+﻿monitor\_schema.models.DriftConfig
+==================================
+
+.. currentmodule:: monitor_schema.models
+
+.. autopydantic_model:: DriftConfig

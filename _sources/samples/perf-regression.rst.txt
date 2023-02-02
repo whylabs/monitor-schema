@@ -1,0 +1,78 @@
+
+================
+Perf: Regression
+================
+----------------------
+Regression Metric: MAE
+----------------------
+Analyzing MAE score.
+Detects when MAE value changes by 10%.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: regression.mae
+     mode: pct
+     threshold: 10.0
+     type: diff
+   id: reg-mae-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     type: dataset
+   
+
+----------------------
+Regression Metric: MSE
+----------------------
+Analyzing MSE score.
+Detects when MSE value changes by 10%.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: regression.mse
+     mode: pct
+     threshold: 10.0
+     type: diff
+   id: reg-mse-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     type: dataset
+   
+
+-----------------------
+Regression Metric: RMSE
+-----------------------
+Analyzing RMSE.
+Detects when RMSE value changes by 10%.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: regression.rmse
+     mode: pct
+     threshold: 10.0
+     type: diff
+   id: reg-rsme-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     type: dataset
+   

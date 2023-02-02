@@ -1,0 +1,114 @@
+:py:mod:`monitor_schema.models.document`
+========================================
+
+.. py:module:: monitor_schema.models.document
+
+.. autoapi-nested-parse::
+
+   The overall document for monitor.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.document.Granularity
+   monitor_schema.models.document.Document
+
+
+
+
+.. py:class:: Granularity
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Supported granularity.
+
+   .. py:attribute:: hourly
+      :annotation: = hourly
+
+      
+
+   .. py:attribute:: daily
+      :annotation: = daily
+
+      
+
+   .. py:attribute:: weekly
+      :annotation: = weekly
+
+      
+
+   .. py:attribute:: monthly
+      :annotation: = monthly
+
+      
+
+
+.. py:class:: Document(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   The main document that dictates how the monitor should be run. This document is managed by WhyLabs internally.
+
+   .. py:attribute:: id
+      :annotation: :Optional[uuid.UUID]
+
+      
+
+   .. py:attribute:: schemaVersion
+      :annotation: :Literal[1]
+
+      
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: orgId
+      :annotation: :str
+
+      
+
+   .. py:attribute:: datasetId
+      :annotation: :str
+
+      
+
+   .. py:attribute:: granularity
+      :annotation: :Granularity
+
+      
+
+   .. py:attribute:: allowPartialTargetBatches
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: entitySchema
+      :annotation: :Optional[monitor_schema.models.column_schema.EntitySchema]
+
+      
+
+   .. py:attribute:: weightConfig
+      :annotation: :Optional[monitor_schema.models.column_schema.EntityWeights]
+
+      
+
+   .. py:attribute:: analyzers
+      :annotation: :List[monitor_schema.models.analyzer.Analyzer]
+
+      
+
+   .. py:attribute:: monitors
+      :annotation: :List[monitor_schema.models.monitor.Monitor]
+
+      
+
+

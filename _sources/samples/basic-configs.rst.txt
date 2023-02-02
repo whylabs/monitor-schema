@@ -1,0 +1,89 @@
+
+==============
+Basic: Configs
+==============
+----------------------------
+Missing Value Ratio Analyzer
+----------------------------
+Analyzing null count ratio.
+This uses stddev to monitor the changes of the ratio over time.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     factor: 3.0
+     metric: count_null_ratio
+     minBatchSize: 1
+     type: stddev
+   id: missing-values-ratio-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     include:
+     - '*'
+     segments:
+     - tags: []
+     type: column
+   
+
+------------------------------
+Unique Estimate Ratio Analyzer
+------------------------------
+Analyzing unique estimate ratio.
+This uses stddev to monitor the changes of the ratio over time.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     factor: 3.0
+     metric: unique_est_ratio
+     minBatchSize: 1
+     type: stddev
+   id: unique-estimate-ratio-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     include:
+     - '*'
+     segments:
+     - tags: []
+     type: column
+   
+
+------------------
+Inferred data type
+------------------
+Make sure inferred data type matches.
+This analyzer compares inferred data type between the target versus the baseline.
+
+
+.. code-block:: yaml
+
+   config:
+     baseline:
+       size: 14
+       type: TrailingWindow
+     metric: inferred_data_type
+     operator: eq
+     type: comparison
+   id: inferred-data-type-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     include:
+     - '*'
+     segments:
+     - tags: []
+     type: column
+   

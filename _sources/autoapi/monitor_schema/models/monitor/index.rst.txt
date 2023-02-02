@@ -1,0 +1,347 @@
+:py:mod:`monitor_schema.models.monitor`
+=======================================
+
+.. py:module:: monitor_schema.models.monitor
+
+.. autoapi-nested-parse::
+
+   Schema for configuring a monitor.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.monitor.MonitorConfigMetadata
+   monitor_schema.models.monitor.GlobalAction
+   monitor_schema.models.monitor.SendEmail
+   monitor_schema.models.monitor.SlackWebhook
+   monitor_schema.models.monitor.RawWebhook
+   monitor_schema.models.monitor.AnomalyFilter
+   monitor_schema.models.monitor.EveryAnomalyMode
+   monitor_schema.models.monitor.DigestModeGrouping
+   monitor_schema.models.monitor.DigestMode
+   monitor_schema.models.monitor.Monitor
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   monitor_schema.models.monitor.excludeMetrics
+
+
+.. py:class:: MonitorConfigMetadata(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Metadata related to a monitor.
+
+   .. py:attribute:: revision
+      :annotation: :int
+
+      
+
+   .. py:attribute:: update_timestamp
+      :annotation: :int
+
+      
+
+   .. py:attribute:: update_author
+      :annotation: :str
+
+      
+
+
+.. py:class:: GlobalAction(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Actions that are configured at the team/organization level.
+
+   .. py:attribute:: type
+      :annotation: :Literal[global]
+
+      
+
+   .. py:attribute:: target
+      :annotation: :str
+
+      
+
+
+.. py:class:: SendEmail(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Action to send an email.
+
+   .. py:attribute:: type
+      :annotation: :Literal[email]
+
+      
+
+   .. py:attribute:: target
+      :annotation: :str
+
+      
+
+
+.. py:class:: SlackWebhook(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Action to send a Slack webhook.
+
+   .. py:attribute:: type
+      :annotation: :Literal[slack]
+
+      
+
+   .. py:attribute:: target
+      :annotation: :pydantic.HttpUrl
+
+      
+
+
+.. py:class:: RawWebhook(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Action to send a Slack webhook.
+
+   .. py:attribute:: type
+      :annotation: :Literal[raw]
+
+      
+
+   .. py:attribute:: target
+      :annotation: :pydantic.HttpUrl
+
+      
+
+
+.. py:class:: AnomalyFilter(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Filter the anomalies based on certain criteria. If the alerts are filtered down to 0, the monitor won't fire.
+
+   .. py:attribute:: includeColumns
+      :annotation: :Optional[List[monitor_schema.models.utils.COLUMN_NAME_TYPE]]
+
+      
+
+   .. py:attribute:: excludeColumns
+      :annotation: :Optional[List[monitor_schema.models.utils.COLUMN_NAME_TYPE]]
+
+      
+
+   .. py:attribute:: minWeight
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: maxWeight
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: minRankByWeight
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: maxRankByWeight
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: minTotalWeight
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: maxTotalWeight
+      :annotation: :Optional[float]
+
+      
+
+   .. py:attribute:: minAlertCount
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: maxAlertCount
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: includeMetrics
+      :annotation: :Optional[List[monitor_schema.models.utils.METRIC_NAME_STR]]
+
+      
+
+
+.. py:data:: excludeMetrics
+   :annotation: :Optional[List[monitor_schema.models.utils.METRIC_NAME_STR]]
+
+   
+
+.. py:class:: EveryAnomalyMode(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Config mode that indicates the monitor will send out individual messages per anomaly.
+
+   .. py:attribute:: type
+      :annotation: :Literal[EVERY_ANOMALY]
+
+      
+
+   .. py:attribute:: filter
+      :annotation: :Optional[AnomalyFilter]
+
+      
+
+
+.. py:class:: DigestModeGrouping
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Enable the ability to group digest by various fields.
+
+   .. py:attribute:: byField
+      :annotation: = byColumn
+
+      
+
+   .. py:attribute:: byDataset
+      :annotation: = byDataset
+
+      
+
+   .. py:attribute:: byAnalyzer
+      :annotation: = byAnalyzer
+
+      
+
+   .. py:attribute:: byDay
+      :annotation: = byDay
+
+      
+
+   .. py:attribute:: byHour
+      :annotation: = byHour
+
+      
+
+
+.. py:class:: DigestMode(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Config mode that indicates the monitor will send out a digest message.
+
+   .. py:attribute:: type
+      :annotation: :Literal[DIGEST]
+
+      
+
+   .. py:attribute:: filter
+      :annotation: :Optional[AnomalyFilter]
+
+      
+
+   .. py:attribute:: creationTimeOffset
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: datasetTimestampOffset
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: groupBy
+      :annotation: :Optional[List[DigestModeGrouping]]
+
+      
+
+
+.. py:class:: Monitor(**data: Any)
+
+   Bases: :py:obj:`monitor_schema.models.commons.NoExtrasBaseModel`
+
+   Customer specified monitor configs.
+
+   .. py:class:: Config
+
+      Updates JSON schema anyOf to oneOf.
+
+      .. py:method:: schema_extra(schema: Dict[str, Any], model: pydantic.BaseModel) -> None
+         :staticmethod:
+
+         Update specific fields here (for Union type, specifically).
+
+
+
+   .. py:attribute:: metadata
+      :annotation: :Optional[monitor_schema.models.commons.Metadata]
+
+      
+
+   .. py:attribute:: id
+      :annotation: :str
+
+      
+
+   .. py:attribute:: displayName
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: tags
+      :annotation: :Optional[List[constr(min_length=3, max_length=32, regex='[0-9a-zA-Z\\-_]')]]
+
+      
+
+   .. py:attribute:: analyzerIds
+      :annotation: :List[constr(regex='^[A-Za-z0-9_\\-]+$')]
+
+      
+
+   .. py:attribute:: schedule
+      :annotation: :Union[monitor_schema.models.commons.FixedCadenceSchedule, monitor_schema.models.commons.CronSchedule, monitor_schema.models.commons.ImmediateSchedule]
+
+      
+
+   .. py:attribute:: disabled
+      :annotation: :Optional[bool]
+
+      
+
+   .. py:attribute:: severity
+      :annotation: :Optional[int]
+
+      
+
+   .. py:attribute:: mode
+      :annotation: :Union[EveryAnomalyMode, DigestMode]
+
+      
+
+   .. py:attribute:: actions
+      :annotation: :List[Union[GlobalAction, SendEmail, SlackWebhook, RawWebhook]]
+
+      
+
+

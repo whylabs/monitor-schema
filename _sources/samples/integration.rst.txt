@@ -1,0 +1,48 @@
+
+=========================
+Integration: Health Check
+=========================
+--------------------
+Late Upload Analyzer
+--------------------
+Detect integration issues where a dataset has gone too long since being profiled. In this example alert two days go by without any profile data being submitted.
+
+
+.. code-block:: yaml
+
+   config:
+     metric: secondsSinceLastUpload
+     type: fixed
+     upper: 172800.0
+   id: late_upload-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     segments:
+     - tags: []
+     type: dataset
+   
+
+--------------------------
+Missing Datapoint Analyzer
+--------------------------
+After a period of time (dataReadinessDuration: ISO 8601 duration) alert that a dataset timestamp has not received data. This is useful for detecting SLA misses in a customer's data pipeline finishing and uploading profile data. 
+
+
+.. code-block:: yaml
+
+   config:
+     metric: missingDatapoint
+     type: fixed
+     upper: 0.0
+   dataReadinessDuration: PT60M
+   id: missing_datapoint-analyzer
+   schedule:
+     cadence: daily
+     type: fixed
+   targetMatrix:
+     segments:
+     - tags: []
+     type: dataset
+   

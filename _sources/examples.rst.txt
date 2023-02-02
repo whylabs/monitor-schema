@@ -1,0 +1,12 @@
+Examples
+================
+
+.. toctree::
+    :maxdepth: 3
+    :glob:
+
+    samples/basic-configs
+    samples/drift-configs
+    samples/perf-*
+    samples/target-matrix-configs
+    samples/integration*
